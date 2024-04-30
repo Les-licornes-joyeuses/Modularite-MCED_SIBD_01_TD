@@ -1,1 +1,1 @@
-# Here we have all part of the Td 1 😊💕
+# Here we have all parts of the Td 1 😊💕
