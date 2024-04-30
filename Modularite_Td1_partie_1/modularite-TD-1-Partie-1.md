@@ -6,6 +6,7 @@ Voici un exemple de portefeuille de cas d'injection SQL. Chaque exemple est suiv
 
 ### Exemple d'attaque d'injection SQL : récupération de toutes les données d'une table
 ``sql``
+
 ``
 SELECT * FROM utilisateurs WHERE id='1' OR '1'='1';
 ``
@@ -14,16 +15,21 @@ SELECT * FROM utilisateurs WHERE id='1' OR '1'='1';
 
 ### Exemple d'attaque d'injection SQL : suppression de données
 ``sql``
-``DELETE FROM utilisateurs WHERE id='1' OR '1'='1';``
+
+``
+DELETE FROM utilisateurs WHERE id='1' OR '1'='1';``
 >Cette attaque vise à supprimer des données de la table "utilisateurs". En utilisant la clause OR '1'='1', l'attaquant parvient à contourner la condition de suppression et à supprimer toutes les lignes de la table.
 
 ### Exemple d'attaque d'injection SQL : récupération des informations d'identification
 ``sql``
-``SELECT * FROM utilisateurs WHERE nom_utilisateur='admin' -- ' AND mot_de_passe='123456';``
 
-\
+``
+SELECT * FROM utilisateurs WHERE nom_utilisateur='admin' -- ' AND mot_de_passe='123456';``
+>Cette attaque vise à récupérer les informations d'identification d'un utilisateur en exploitant une injection SQL aveugle. En utilisant le symbole "--" pour commenter la fin de la requête, l'attaquant peut contourner la vérification du mot de passe et récupérer les informations de l'utilisateur "admin".
+
 ### Exemple d'attaque d'injection SQL : ajout d'un nouvel utilisateur
 ``sql``
+
 ``INSERT INTO utilisateurs (nom_utilisateur, mot_de_passe) VALUES ('pirate', 'password123');``
 >Cette attaque vise à ajouter un nouvel utilisateur à la table "utilisateurs". L'attaquant peut insérer des valeurs arbitraires dans la requête pour créer un nouvel utilisateur avec des informations d'identification de son choix.
 
@@ -37,6 +43,7 @@ SELECT * FROM utilisateurs WHERE id='1' OR '1'='1';
 
 ### Exemple d'attaque d'injection SQL : contournement de l'authentification
 ``sql``
+
 ``
 SELECT * FROM utilisateurs WHERE nom_utilisateur='' OR '1'='1' -- ' AND mot_de_passe='' OR '1'='1';
 ``
@@ -52,7 +59,8 @@ SELECT * FROM utilisateurs WHERE nom_utilisateur='' OR '1'='1' -- ' AND mot_de_p
 ### Exemple d'attaque d'injection SQL : exécution de commandes SQL supplémentaires
 ``sql``
 
-``SELECT * FROM utilisateurs; DROP TABLE utilisateurs;``
+``
+SELECT * FROM utilisateurs; DROP TABLE utilisateurs;``
 >Cette attaque vise à exécuter des commandes SQL supplémentaires, en l'occurrence, la suppression de la table "utilisateurs". L'attaquant insère une commande DROP TABLE après la requête légitime pour supprimer la table et causer des dommages à la base de données.
 
 ### Exemple d'attaque d'injection SQL : exfiltration de données
@@ -63,6 +71,7 @@ SELECT * FROM utilisateurs WHERE nom_utilisateur='' OR '1'='1' -- ' AND mot_de_p
 
 ### Exemple d'attaque d'injection SQL : exécution de commandes système
 ``sql``
+
 ``
 SELECT * FROM utilisateurs; ; DELETE FROM utilisateurs;``
 >Cette attaque vise à exécuter des commandes système en utilisant une injection SQL. L'attaquant insère une commande supplémentaire après la requête légitime en utilisant un point-virgule (;) pour exécuter la commande DELETE FROM utilisateurs, ce qui entraîne la suppression de toutes les données de la table "utilisateurs".
