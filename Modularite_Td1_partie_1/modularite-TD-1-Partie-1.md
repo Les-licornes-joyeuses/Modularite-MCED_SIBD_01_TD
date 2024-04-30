@@ -1,4 +1,4 @@
-# modularite_TD_1_Partie_1
+# Modularite_TD_1_Partie_1
 
 # Modularite partie 1
 
